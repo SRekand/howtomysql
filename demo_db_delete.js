@@ -7,11 +7,11 @@ var con = mysql.createConnection( {
     database: "mydb"
 });
 
-
 con.connect(function(err) {
     if (err) throw err;
-    con.query("SELECT * FROM customers ORDER BY name DESC", function (err, result) {
+    var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
+    con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log(result);
+        console.log("Number of records deleted: " + result.affectedRows);
     });
 });
